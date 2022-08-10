@@ -150,7 +150,7 @@ namespace MusicX.Views
             var navigation = StaticService.Container.Resolve<Services.NavigationService>();
             var notifications = StaticService.Container.Resolve<Services.NotificationsService>();
 
-            new LoginWindow(vkService, configService, logger, navigation, notifications).Show();
+            new LoginWindow().Show();
             Window.GetWindow(this)?.Close();
         }
 
