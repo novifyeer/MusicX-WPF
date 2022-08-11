@@ -6,7 +6,7 @@ namespace VkNet.AudioBypassService.Utils
 {
 	public static class VkAuthErrorFactory
 	{
-		public static System.Exception Create(VkAuthError error)
+		public static System.Exception Create(BypassAuthError error)
 		{
 			switch (error.Error)
 			{

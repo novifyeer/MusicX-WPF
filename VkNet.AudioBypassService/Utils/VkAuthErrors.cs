@@ -1,5 +1,6 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using VkNet.AudioBypassService.Exceptions;
 using VkNet.Exception;
 using VkNet.Model;
 
@@ -39,7 +40,7 @@ namespace VkNet.AudioBypassService.Utils
 				return;
 			}
 
-			var vkAuthError = JsonConvert.DeserializeObject<VkAuthError>(obj.ToString());
+			var vkAuthError = JsonConvert.DeserializeObject<BypassAuthError>(obj.ToString());
 
 			throw VkAuthErrorFactory.Create(vkAuthError);
 		}

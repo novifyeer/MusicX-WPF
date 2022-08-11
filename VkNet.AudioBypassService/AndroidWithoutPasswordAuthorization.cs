@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Caching.Distributed;
 using VkNet.AudioBypassService.Abstractions;
+using VkNet.AudioBypassService.Exceptions;
 using VkNet.AudioBypassService.Models.Vk;
 using VkNet.AudioBypassService.Utils;
 using VkNet.Exception;
@@ -68,24 +70,33 @@ public sealed class AndroidWithoutPasswordAuthorization : IBypassAuthorizationFl
             {
                 _params.Password = await PasswordRequested!.Invoke(null);
 
-                while (true)
+                try
                 {
-                    try
-                    {
-                        result = await _oauthService.AuthenticateByPasswordAsync(AppSecret, ApiId, ApiId, anonToken, null, _params.Phone, _params.Password, _params.Code, true, false, null);
-                        break;
-                    }
-                    catch (VkApiMethodInvokeException e) when (e.ErrorCode == 1110)
-                    {
-                        _params.Code = await PhoneConfirmationRequested!.Invoke(new(_params.ForceSms is true ? PhoneConfirmationType.Sms : PhoneConfirmationType.CallReset, 6, null, null, null), null);
-                    }
+                    result = await _oauthService.AuthenticateByPasswordAsync(AppSecret, ApiId, ApiId, anonToken, null, _params.Phone, _params.Password, true, false, true, _params.Code);
+                }
+                catch (VkAuthException e) when (e.AuthError.Error == "need_validation")
+                {
+                    using (var client = new HttpClient())
+                        await client.GetAsync(e.AuthError.RedirectUri, HttpCompletionOption.ResponseHeadersRead);
+                    
+                    _params.Code = await PhoneConfirmationRequested!.Invoke(new(
+                        e.AuthError.ValidationType is BypassValidationType.CallReset ? PhoneConfirmationType.CallReset : PhoneConfirmationType.Sms,
+                        e.AuthError.ValidationType switch
+                        {
+                            BypassValidationType.Sms or BypassValidationType.App => 6,
+                            BypassValidationType.CallReset => 4,
+                            _ => 0
+                        },
+                        null, null, null), null);
+
+                    result = await _oauthService.AuthenticateByPasswordAsync(AppSecret, ApiId, ApiId, anonToken, e.AuthError.ValidationSid, _params.Phone, _params.Password, true, false, true, _params.Code);
                 }
                 break;
             }
             case FlowType.NeedValidation:
             {
                 var confirmationSid = await VerifyAsync(anonToken, sid);
-                result = await _oauthService.AuthenticateByPasswordAsync(AppSecret, ApiId, ApiId, anonToken, confirmationSid, _params.Phone, _params.Password, null, true, false);
+                result = await _oauthService.AuthenticateByPasswordAsync(AppSecret, ApiId, ApiId, anonToken, confirmationSid, _params.Phone, _params.Password, true, false, _params.ForceSms.GetValueOrDefault(false), null);
                 break;
             }
             default:

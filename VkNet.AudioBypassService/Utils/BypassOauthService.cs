@@ -49,7 +49,9 @@ public sealed class BypassOauthService
         });
     }
     
-    public Task<AuthorizationResult> AuthenticateByPasswordAsync(string privateKey, string apiId, string clientId, string anonToken, [CanBeNull] string sid, string phone, [CanBeNull] string password, [CanBeNull] string code, bool twoFactorSupported, bool libVerifySupport, string flowType = "auth_without_password")
+    public Task<AuthorizationResult> AuthenticateByPasswordAsync(string privateKey, string apiId, string clientId, string anonToken, [CanBeNull] string sid, string phone, [CanBeNull] string password, bool twoFactorSupported, bool libVerifySupport, bool forceSms,
+        string code,
+        string flowType = "auth_without_password")
     {
         return _invoker.CallAsync<AuthorizationResult>(new Uri($"{OauthDomain}/token"), new()
         {
@@ -69,6 +71,7 @@ public sealed class BypassOauthService
             {"libverify_support", libVerifySupport},
             {"anonymous_token", anonToken},
             {"sid", sid},
+            {"force_sms", forceSms},
             {"code", code}
         });
     }

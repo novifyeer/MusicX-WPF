@@ -16,7 +16,7 @@ public class LoginViewModel : BaseViewModel
     private readonly IBypassAuthorizationFlow _authFlow;
     public ulong PhoneNumber { get; set; }
     public int CountryCode { get; set; } = 7;
-    public bool ForceSms { get; set; } = true;
+    public bool ForceSms { get; set; }
     
     public ICommand SubmitPhoneCommand { get; }
     
