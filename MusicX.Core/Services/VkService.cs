@@ -10,7 +10,9 @@ using Microsoft.Extensions.Logging;
 using System.Net.Http.Headers;
 using VkNet;
 using VkNet.AudioBypassService.Abstractions;
+using VkNet.Abstractions.Core;
 using VkNet.AudioBypassService.Extensions;
+using VkNet.AudioBypassService.Utils;
 using VkNet.Enums.Filters;
 using VkNet.Exception;
 using VkNet.Model;
@@ -42,6 +44,7 @@ namespace MusicX.Core.Services
             var services = new ServiceCollection();
             
             services.AddSingleton<ICaptchaSolver, CaptchaSolver>();
+            services.AddSingleton<ICaptchaHandler, CaptchaHandler>();
             services.AddAudioBypass(builder => builder.UseAndroidNoPassword());
 
             vkApi = new VkApi(services);
@@ -56,7 +59,7 @@ namespace MusicX.Core.Services
             _cache = provider.GetRequiredService<IDistributedCache>();
         }
 
-        public async Task ClearToken()
+        public async Task ClearTokenAsync()
         {
             await vkApi.LogOutAsync();
             vkApi.UserId = null;
@@ -128,6 +131,12 @@ namespace MusicX.Core.Services
             }
            
 
+        }
+
+        public async Task RefreshTokenAsync(string? oldToken = null)
+        {
+            var newToken = await _provider.GetRequiredService<BypassAuthCategory>().RefreshTokenAsync(oldToken ?? vkApi.Token);
+            await SetTokenAsync(newToken, null!);
         }
 
         public async Task<ResponseData> GetAudioCatalogAsync(string url = null)
@@ -374,7 +383,21 @@ namespace MusicX.Core.Services
                     {"need_owner", needOwner }
                 };
 
-                var json  = await vkApi.InvokeAsync("execute.getPlaylist", parameters);
+                string json;
+
+                while (true)
+                {
+                    try
+                    {
+                        json = await vkApi.InvokeAsync("execute.getPlaylist", parameters);
+                        break;
+                    }
+                    catch(AggregateException ex) when (ex.InnerExceptions.OfType<VkApiMethodInvokeException>().Any(b => b.ErrorCode == 25))
+                    {
+                        await RefreshTokenAsync();
+                    }
+                }
+                
                 logger.Debug("RESULT OF 'execute.getPlaylist'" + json);
 
 
