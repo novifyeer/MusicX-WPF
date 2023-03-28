@@ -17,7 +17,6 @@ using MusicX.Behaviors;
 using MusicX.Services.Player;
 using MusicX.Services.Player.Playlists;
 using MusicX.ViewModels;
-using Wpf.Ui.Common;
 using System.Collections.Generic;
 using Microsoft.AppCenter.Crashes;
 using MusicX.Shared.Player;
@@ -267,15 +266,7 @@ namespace MusicX.Controls
 
         private void UpdateSpeakerIcon()
         {
-            SpeakerIcon.Icon = playerService.Volume switch
-            {
-                _ when playerService.IsMuted => SymbolRegular.SpeakerOff28,
-                0.0 => SymbolRegular.SpeakerOff28,
-                > 0.0 and < 0.30 => SymbolRegular.Speaker032,
-                > 0.30 and < 0.60 => SymbolRegular.Speaker132,
-                > 0.80 => SymbolRegular.Speaker232,
-                _ => SpeakerIcon.Icon
-            };
+            
         }
 
         private async void PlayPauseButton_Click(object sender, RoutedEventArgs e)

@@ -91,12 +91,12 @@
                     Width="400"
                     Margin="0,10,0,0"
                     HorizontalAlignment="Left" />
-                <wpfui:Button
+                <Button
                     x:Name="OpenSectionButton"
                     Width="300"
                     Margin="0,10,0,0"
                     HorizontalAlignment="Left"
-                    Appearance="Transparent"
+                    
                     Click="OpenSectionButton_Click"
                     Content="Открыть" />
 

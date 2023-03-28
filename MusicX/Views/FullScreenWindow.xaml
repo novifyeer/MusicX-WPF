@@ -6,7 +6,7 @@
     xmlns:hc="https://handyorg.github.io/handycontrol"
     xmlns:local="clr-namespace:MusicX.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:wpfui="clr-namespace:Wpf.Ui.Controls;assembly=Wpf.Ui" xmlns:controls="clr-namespace:MusicX.Controls"
+    xmlns:controls="clr-namespace:MusicX.Controls"
     Title="FullScreenWindow"
     Width="1280"
     Height="720"
@@ -56,7 +56,7 @@
             Opacity="0.7"
             Text="Сейчас играет" />
 
-        <wpfui:Button
+        <Button
             x:Name="CloseButton"
             Width="50"
             Height="50"
@@ -64,11 +64,11 @@
             Padding="0"
             HorizontalAlignment="Right"
             VerticalAlignment="Top"
-            Appearance="Transparent"
+            
             BorderThickness="0"
             Click="CloseButton_Click"
             FontSize="30"
-            Icon="ArrowMinimize28" />
+             />
 
 
         <StackPanel
@@ -104,9 +104,7 @@
                             Color="Black" />
                     </Rectangle.Effect>
                 </Rectangle>
-                <wpfui:SymbolIcon x:Name="CoverNote"
-                                  FontSize="460"
-                                  Symbol="MusicNote124"/>
+               
             </Grid>
 
             <StackPanel Margin="30,0,0,0" VerticalAlignment="Center">
@@ -138,7 +136,7 @@
             </StackPanel>
 
 
-            <controls:LyricsControl Margin="30,0,0,0" MaxHeight="500" x:Name="LyricsControlView"/>
+            
 
         </StackPanel>
 
@@ -153,72 +151,7 @@
             Opacity="0.6"
             Text="Далее" />
 
-        <wpfui:CardAction
-            Width="300"
-            Height="80"
-            Margin="0,0,10,10"
-            HorizontalAlignment="Right"
-            VerticalAlignment="Bottom"
-            Click="CardAction_Click"
-            ShowChevron="False">
-            <Grid>
-                <StackPanel Orientation="Horizontal">
-
-                    <Grid>
-                        <Rectangle Width="50"
-                                   Height="50"
-                                   RadiusX="5"
-                                   RadiusY="5"
-                                   Fill="Black"
-                                   Opacity="0.7">
-                            <Rectangle.Effect>
-                                <DropShadowEffect BlurRadius="8" ShadowDepth="0" Opacity="0.2" />
-                            </Rectangle.Effect>
-                        </Rectangle>
-                        <Rectangle
-                            Width="50"
-                            Height="50"
-                            RadiusX="5"
-                            RadiusY="5">
-                            <Rectangle.Fill>
-                                <ImageBrush x:Name="NextTrackCover" />
-                            </Rectangle.Fill>
-                        </Rectangle>
-                        <wpfui:SymbolIcon x:Name="NextTrackNote"
-                                          FontSize="46"
-                                          Symbol="MusicNote124"/>
-                    </Grid>
-
-                    <StackPanel Margin="10,0,0,0">
-                        <TextBlock
-                            x:Name="NextTrackName"
-                            Width="185"
-                            FontFamily="{StaticResource VKSansRegular}"
-                            FontSize="18"
-                            Text="Имя трека"
-                            TextTrimming="CharacterEllipsis" />
-
-                        <TextBlock
-                            x:Name="NextTrackArtist"
-                            Width="185"
-                            FontFamily="{StaticResource VKSansRegular}"
-                            FontSize="18"
-                            Opacity="0.6"
-                            Text="Артист"
-                            TextTrimming="CharacterEllipsis" />
-                    </StackPanel>
-
-
-                </StackPanel>
-
-
-                <wpfui:SymbolIcon
-                    HorizontalAlignment="Right"
-                    FontSize="25"
-                    Symbol="Next24" />
-
-            </Grid>
-        </wpfui:CardAction>
+        
 
 
     </Grid>

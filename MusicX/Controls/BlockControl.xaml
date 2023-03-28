@@ -18,14 +18,7 @@
                 Margin="5"
                 Visibility="Collapsed">
 
-                <wpfui:Card>
-                    <StackPanel HorizontalAlignment="Center">
-                        <TextBlock x:Name="DataTypeName" Foreground="White" />
-                        <TextBlock x:Name="LayoutName" Foreground="White" />
-
-                    </StackPanel>
-                </wpfui:Card>
-            </Grid>
+                </Grid>
         </StackPanel>
 
     </Grid>

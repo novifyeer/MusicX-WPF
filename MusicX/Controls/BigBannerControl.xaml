@@ -120,12 +120,12 @@
                         Opacity="0.7"
                         Text="Какое то описание от ВКонтакте, хз че они там выдадут"
                         TextWrapping="Wrap" />
-                    <wpfui:Button
+                    <Button
                         x:Name="ActionButton"
                         Width="170"
                         Margin="0,20,0,0"
                         HorizontalAlignment="Left"
-                        Appearance="Secondary"
+                 
                         Click="ActionButton_Click"
                         Content="Открыть" />
                 </StackPanel>

@@ -5,43 +5,13 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:MusicX.Controls"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:wpfui="clr-namespace:Wpf.Ui.Controls;assembly=Wpf.Ui"
     d:DesignHeight="450"
     d:DesignWidth="800"
     Loaded="UserControl_Loaded"
     mc:Ignorable="d">
     <Grid>
-        <wpfui:CardAction
-            Margin="0,10,0,10"
-            Click="CardAction_Click"
-            ShowChevron="False">
-            <Grid>
-                <Rectangle
-                    Height="200"
-                    VerticalAlignment="Stretch"
-                    RadiusX="5"
-                    RadiusY="5">
-                    <Rectangle.Fill>
-                        <ImageBrush x:Name="BannerCover" Stretch="UniformToFill" />
-                    </Rectangle.Fill>
-                </Rectangle>
-
-                <Rectangle
-                    Height="45"
-                    VerticalAlignment="Bottom"
-                    Fill="Black"
-                    Opacity="0.4" />
-                <StackPanel
-                    Margin="0,0,0,5"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Bottom">
-                    <TextBlock
-                        x:Name="BannerTitle"
-                        FontFamily="{StaticResource VKSansDemiBold}"
-                        FontWeight="DemiBold" />
-                    <TextBlock x:Name="BannerText" HorizontalAlignment="Center" />
-                </StackPanel>
-            </Grid>
-        </wpfui:CardAction>
+        
+        
     </Grid>
+        
 </UserControl>

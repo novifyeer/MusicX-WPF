@@ -10,37 +10,6 @@
              xmlns:controls="clr-namespace:MusicX.ViewModels.Controls"
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300"
-             d:DataContext="{d:DesignInstance {x:Type controls:BlockButtonViewModel}}"
              x:Name="Control">
-    <ui:Card>
-        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
-            <ItemsControl ItemsSource="{Binding Block.FollowingsUpdateInfos[0].Covers, ElementName=Control}" HorizontalAlignment="Center">
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <StackPanel Orientation="Horizontal" IsItemsHost="True" />
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate DataType="{x:Type model:AudioCover}">
-                        <Rectangle Width="110" Height="110"
-                                   Margin="-25,0,0,0"
-                                   RadiusX="10" RadiusY="10">
-                            <Rectangle.Fill>
-                                <ImageBrush ImageSource="{Binding Photo270}" />
-                            </Rectangle.Fill>
-                        </Rectangle>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
-            <TextBlock FontSize="16" Margin="0,20,0,0"
-                       Foreground="#AAAAAA"
-                       Text="{Binding Block.FollowingsUpdateInfos[0].Title, ElementName=Control, FallbackValue=Title}"/>
-            <ui:Button Appearance="Secondary"
-                       HorizontalAlignment="Center"
-                       Margin="0,20,0,0"
-                       Icon="{Binding Icon}"
-                       Content="{Binding Text}"
-                       Command="{Binding InvokeCommand}"/>
-        </StackPanel>
-    </ui:Card>
+    
 </UserControl>

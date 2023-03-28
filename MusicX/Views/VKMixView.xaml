@@ -42,20 +42,20 @@
                         <TextBlock Text="Динамический плейлист, который подстраивается под Ваш вкус" FontSize="17" FontFamily="{StaticResource VKSansRegular}"/>
                     </StackPanel>
 
-                    <wpfui:Button HorizontalAlignment="Right" Command="{Binding PlayPersonalMixCommand}" VerticalAlignment="Bottom" Width="200" BorderBrush="White" BorderThickness="1" Appearance="Secondary"  Margin="0 0 30 30">
+                    <Button HorizontalAlignment="Right" Command="{Binding PlayPersonalMixCommand}" VerticalAlignment="Bottom" Width="200" BorderBrush="White" BorderThickness="1"  Margin="0 0 30 30">
                         <Grid>
                             <StackPanel Visibility="{Binding PlayingPersonalMix, Converter={StaticResource InversionBooleanToVisibilityConverter}}" Orientation="Horizontal">
-                                <wpfui:SymbolIcon Symbol="Play12"/>
+                                
                                 <TextBlock Margin="10,0,0,0" Text="Слушать мой микс"/>
                             </StackPanel>
 
                             <StackPanel Visibility="{Binding PlayingPersonalMix, Converter={StaticResource BooleanToVisibilityConverter}}" Orientation="Horizontal">
-                                <wpfui:SymbolIcon Symbol="Pause20"/>
+                               
                                 <TextBlock Margin="10,0,0,0" Text="Остановить мой микс"/>
                             </StackPanel>
                         </Grid>
                         
-                    </wpfui:Button>
+                    </Button>
                 </Grid>
 
                 <TextBlock Text="Микс по артистам" FontSize="20" Margin="0,15,0,0" FontFamily="{StaticResource VKSansMedium}" />

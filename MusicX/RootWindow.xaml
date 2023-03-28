@@ -1,4 +1,4 @@
-﻿<wpfui:UiWindow
+﻿<Window
     x:Class="MusicX.RootWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -17,9 +17,6 @@
     Title="MusicX"
     WindowStartupLocation="CenterScreen"
     Background="#202020"
-    ExtendsContentIntoTitleBar="True"
-    WindowBackdropType="Mica"
-    WindowCornerPreference="Round"
     mc:Ignorable="d">
     
     <Window.TaskbarItemInfo>
@@ -107,11 +104,7 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <controls:NavigationBar
-                x:Name="navigationBar"
-                Grid.Column="0"
-                Margin="0,0,12,0"
-                Frame="{Binding ElementName=RootFrame}" />
+           
 
 
         </Grid>
@@ -136,39 +129,7 @@
 
         
 
-        <wpfui:TitleBar
-            x:Name="WpfTitleBar"
-            Grid.Row="0"
-            Height="40"
-            MinimizeToTray="False"
-            UseSnapLayout="True">
-            <!--<wpfui:TitleBar.Tray>
-                <wpfui:NotifyIcon
-                    FocusOnLeftClick="True"
-                    Icon="pack://application:,,,/Assets/icon.ico"
-                    MenuOnRightClick="True"
-                    TooltipText="MusicX">
-                    <wpfui:NotifyIcon.Menu>
-                        <ContextMenu>
-                            <MenuItem
-                                Header="Home"
-                                Tag="home" />
-                            <MenuItem
-                                Header="Save"
-                                Tag="save" />
-                            <MenuItem
-                                Header="Open"
-                                Tag="open" />
-                            <Separator />
-                            <MenuItem
-                                Header="Reload"
-                                Tag="reload" />
-                        </ContextMenu>
-                    </wpfui:NotifyIcon.Menu>
-                </wpfui:NotifyIcon>
-            </wpfui:TitleBar.Tray>-->
-        </wpfui:TitleBar>
-
+        
         <!--<Rectangle RadiusX="99" RadiusY="99" HorizontalAlignment="Right" Margin="0 8 150 0" Height="35" Fill="Red" Width="35">
             <Rectangle.ContextMenu >
                 <ContextMenu x:Name ="user">
@@ -183,18 +144,7 @@
             </Rectangle.ContextMenu>
         </Rectangle>-->
 
-        <controls:SearchBox
-            x:Name="SearchBox"
-            Grid.RowSpan="2"
-            Width="500"
-            Margin="0,10,0,0"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Top"
-            KeyUp="TextBox_KeyUp"
-            MouseEnter="SearchBox_MouseEnter"
-            MouseLeave="SearchBox_MouseLeave"
-            MouseLeftButtonUp="SearchBox_MouseLeftButtonUp"
-            PlaceholderText="Поиск музыки, плейлистов, исполнителей" />
+        
 
         <!--<Rectangle Fill="#414141" Grid.ColumnSpan="3" Height="300" Grid.RowSpan="5"  RadiusY="10" RadiusX="10" Width="500" VerticalAlignment="Top" Margin="0 45 0 0">
             <Rectangle.Effect>
@@ -249,57 +199,22 @@
                 </Storyboard>
             </StackPanel.Resources>
 
-            <Grid>
-                <wpfui:Snackbar
-                    x:Name="RootSnackbar"
-                    MaxWidth="600"
-                    Margin="0,0,0,20"
-                    Icon="Info20"
-                    CloseButtonEnabled="True"
-                    Timeout="5000"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Bottom" />
-                <wpfui:Card Margin="{StaticResource ListenTogetherHiddenThickness}"
-                            HorizontalAlignment="Right"
-                            VerticalAlignment="Bottom"
-                            Name="ListenTogetherCard"
-                            Background="#232323">
-                    <controls:ListenTogetherControl />
-                </wpfui:Card>
-            </Grid>
+           
 
-            <controls:PlayerControl
-                x:Name="playerControl"
-                MouseDoubleClick="playerControl_MouseDoubleClick"
-                RenderTransformOrigin="0.5,0.5"
-                Margin="18,0,12,10"
-                Visibility="Collapsed">
-                <controls:PlayerControl.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform />
-                        <SkewTransform />
-                        <RotateTransform />
-                        <TranslateTransform />
-                    </TransformGroup>
-                </controls:PlayerControl.RenderTransform>
-            </controls:PlayerControl>
+            
         </StackPanel>
 
-        <wpfui:Button
+        <Button
             Width="70"
             Height="40"
             Padding="0"
             HorizontalAlignment="Left"
-            Appearance="Transparent"
             BorderThickness="0"
             Click="Button_Click">
-            <Button.Content>
-                <wpfui:SymbolIcon Symbol="ArrowLeft32" />
-            </Button.Content>
-        </wpfui:Button>
+           
+        </Button>
 
-        <controls:ModalFrame Grid.Row="1"
-                             x:Name="ModalFrame" />
+      
 
     </Grid>
-</wpfui:UiWindow>
+</Window>

@@ -1,7 +1,6 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using Wpf.Ui.Common;
 namespace MusicX.Controls;
 
 public class ModalFrame : Control
@@ -60,7 +59,7 @@ public class ModalFrame : Control
     public ModalFrame()
     {
         KeyUp += OnKeyUp;
-        CloseCommand = new RelayCommand(Close);
+        
     }
     private void OnKeyUp(object sender, KeyEventArgs e)
     {

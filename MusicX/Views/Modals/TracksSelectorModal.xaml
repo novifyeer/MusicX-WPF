@@ -18,32 +18,11 @@
                 <TextBlock Text="Выбрано треков: " Foreground="White" />
                 <TextBlock Foreground="White" Text="{Binding SelectedTracks.Count}" />
             </StackPanel>
-            <controls:MultiSelectListView BorderBrush="Transparent"
-                                          Margin="0 10 0 0"
-                                          ScrollViewer.ScrollChanged="MultiSelectListView_ScrollChanged"
-                                          Background="Transparent"
-                                          SelectedItemsList="{Binding SelectedTracks, Mode=TwoWay}"
-                                          SelectionMode="Multiple" ItemsSource="{Binding Tracks}"
-                                          Height="560">
-                <ListBox.ItemContainerStyle>
-                    <Style TargetType="{x:Type ListViewItem}" BasedOn="{StaticResource {x:Type ListViewItem}}">
-                        <Setter Property="Margin" Value="0,1,0,1" />
-                    </Style>
-                </ListBox.ItemContainerStyle>
-                <controls:MultiSelectListView.ItemTemplate>
-                    <DataTemplate DataType="{x:Type models:Audio}">
-                        <Grid>
-                            <controls:TrackControl Audio="{Binding}" />
-                            <Rectangle Fill="Transparent" />
-                        </Grid>
-                    </DataTemplate>
-
-                </controls:MultiSelectListView.ItemTemplate>
-            </controls:MultiSelectListView>
+            
         </StackPanel>
 
-        <wpfui:ProgressRing IsIndeterminate="True"
-                            Visibility="{Binding IsLoading, Converter={StaticResource BooleanToVisibilityConverter}}" />
+        <ProgressBar IsIndeterminate="True"
+                             />
 
         <Grid VerticalAlignment="Bottom" Margin="20,20">
             <Grid.ColumnDefinitions>
@@ -52,8 +31,8 @@
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
 
-            <wpfui:Button HorizontalAlignment="Stretch" Command="{Binding ConfirmCommand}" Grid.Column="2"
-                          Appearance="Primary" Foreground="White" Content="Добавить" />
+            <Button HorizontalAlignment="Stretch" Command="{Binding ConfirmCommand}" Grid.Column="2"
+                          Foreground="White" Content="Добавить" />
         </Grid>
     </Grid>
 </Page>

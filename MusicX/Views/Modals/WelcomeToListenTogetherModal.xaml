@@ -11,14 +11,14 @@
 
     <Grid>
         <StackPanel>
-            <wpfui:SymbolIcon Symbol="People24" FontSize="130"/>
+            
             <TextBlock FontSize="19" FontFamily="{StaticResource VKSansMedium}" Text="Теперь Вы можете слушать музыку со своими друзьями вместе."/>
             <TextBlock/>
             <TextBlock FontWeight="Bold" Text="Для того чтобы создать сессию совместного прослушивания:"/>
             <TextBlock Text="1. Включите трек"/>
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="2. Нажмите в нижнем баре на кнопку с иконкой "/>
-                <wpfui:SymbolIcon Symbol="People24"/>
+                
             </StackPanel>
             <TextBlock Text="3. Нажмите на кнопку Создать сессию "/>
             <TextBlock Text="4. Сообщите другу ссылку или ID сессии для подключения"/>
